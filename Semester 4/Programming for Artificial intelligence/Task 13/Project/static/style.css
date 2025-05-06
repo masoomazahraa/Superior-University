@@ -1,0 +1,121 @@
+body {
+    font-family:'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #d7f0fa, #e7eaf6);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+.chat-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+.chat-box {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    margin-bottom: 15px;
+}
+.message {
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 18px;
+    width: fit-content;
+    max-width: 80%;
+    animation: fadeIn 0.4s ease-in-out;
+}
+.message.user {
+    background: #c8e6c9;
+    align-self: flex-end;
+    margin-left: auto;
+    text-align: right;
+}
+.message.bot {
+    background: #e3f2fd;
+    align-self: flex-start;
+    margin-right: auto;
+}
+.chat-form {
+    display: flex;
+    gap: 10px;
+}
+.chat-form input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+.chat-form button {
+    padding: 12px 18px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.chat-form button:hover {
+    background-color: #004d40;
+}
+body.dark-mode {
+    background: #121212;
+    color: #eee;
+}
+body.dark-mode .chat-container {
+    background: #2c2c2c;
+}
+body.dark-mode .chat-box {
+    background: #1e1e1e;
+}
+body.dark-mode .message.user {
+    background: #0d220e;
+    color: white;
+}
+body.dark-mode .message.bot {
+    background: #121634;
+    color: white;
+}
+body.dark-mode input[type="text"] {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+body.dark-mode .chat-form button {
+    background: #2c442d;
+    color: black;
+}
+.dark-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid #003b34;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #00796b;
+    transition: all 0.3s ease;
+}
+body.dark-mode .dark-toggle {
+    border-color: #81c784;
+    color: #81c784;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
