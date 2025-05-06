@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Joke App</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <div class="joke">
+        <div class="text">{{ joke }}</div>
+        <form action="/new">
+            <button type="submit">Another :P</button>
+        </form>
+    </div>
+</body>
+</html>
