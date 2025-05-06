@@ -35,7 +35,7 @@ def predict_sentiment(text):
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({
-        "message": "Welcome to the Sentiment Classifier API. Use POST /classify with a JSON like {'text': 'your input here'}."
+        "message": "This is Sentiment Classifier API. Use POST /classify with a JSON {'text': 'your input here'}."
     })
 @app.route("/classify", methods=["POST"])
 def classify():
