@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Assistant</title><link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🩺 Your Assistant</div>
+
+    <div class="messages" id="chat-box"></div>
+    <div class="typing-indicator" id="typing-indicator">Typing...</div>
+
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
+      <button type="submit">Send</button>
+    </form>
+
+    <button class="clear-btn" id="clear-btn">Clear Chat</button>
+  </div>
+
+  <script>
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    const typingIndicator = document.getElementById("typing-indicator");
+
+    document.getElementById("clear-btn").addEventListener("click", () => {
+      chatBox.innerHTML = "";
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userMsg = input.value.trim();
+      if (!userMsg) return;
+
+      chatBox.innerHTML += `<div class="message user-msg">${userMsg}</div>`;
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+      typingIndicator.style.display = "block";
+
+      setTimeout(() => {
+        fetch("/get", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `msg=${encodeURIComponent(userMsg)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+          typingIndicator.style.display = "none";
+          chatBox.innerHTML += `<div class="message bot-msg">${data.response}</div>`;
+          chatBox.scrollTop = chatBox.scrollHeight;
+        });
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
